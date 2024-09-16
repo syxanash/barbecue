@@ -13,6 +13,9 @@
             justify-content: center;
             color: lime;
          }
+         .copyright {
+            color: white;
+         }
          figure button[name="play"] {
            width: 50px;
            height: 50px;
@@ -126,15 +129,25 @@
             <b>FACING NORTH</b><br>
             <iframe style="width: 560px; height: 400px" allowfullscreen="" frameborder="0" src="https://slipcam.dmyc.ie/webcam.php"></iframe>
          </div>
-         <script>
-            $('#play-all-videos').on('click', function(ev) {
-                Object.entries($(".player-frame")).forEach((frame) => {frame[1].src += "&autoplay=1&mute=1"})
-                $("#oconnellst_html5_api").trigger('click');
-                $('#play-all-videos').hide();
-                ev.preventDefault();
-            });
-         </script>
-         <script src="https://vjs.zencdn.net/8.10.0/video.min.js"></script>
       </div>
+      <div class="copyright">
+         <p>All webcam feeds are property of their respective owners</p>
+         <ul>
+            <li><a href="https://www.carrollsirishgifts.com">carrollsirishgifts.com</a></li>
+            <li><a href="https://livefromireland.ie">livefromireland.ie</a></li>
+            <li><a href="https://www.earthcam.net">earthcam.net</a></li>
+            <li><a href="https://hyc.ie">hyc.ie</a></li>
+            <li><a href="https://www.dmyc.ie">dmyc.ie</a></li>
+         </ul>
+      </div>
+      <script>
+         $('#play-all-videos').on('click', function(ev) {
+             Object.entries($(".player-frame")).forEach((frame) => {frame[1].src += "&autoplay=1&mute=1"})
+             $("#oconnellst_html5_api").trigger('click');
+             $('#play-all-videos').hide();
+             ev.preventDefault();
+         });
+      </script>
+      <script src="https://vjs.zencdn.net/8.10.0/video.min.js"></script>
    </body>
 </html>
