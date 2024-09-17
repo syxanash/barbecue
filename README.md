@@ -1,1 +1,1 @@
-just a webcam monitoring dashboard for Dublin
+just a public webcams monitoring dashboard for Dublin city
