@@ -1,34 +1,15 @@
-name: Auto Close PR
-
-on:
-  pull_request:
-    types:
-      - opened
+on: pull_request
 
 jobs:
-  close-pr:
+  example_comment_pr:
     runs-on: ubuntu-latest
+    name: An example job to comment a PR
     steps:
-      - name: Comment on PR
-        uses: actions/github-script@v7
-        with:
-          github-token: ${{secrets.GITHUB_TOKEN}}
-          script: |
-            github.rest.issues.createComment({
-              issue_number: context.issue.number,
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              body: '👋 Thanks for reporting!'
-            })
+      - name: Checkout
+        uses: actions/checkout@v3
 
-      - name: Close PR
-        uses: actions/github-script@v7
+      - name: Comment PR
+        uses: thollander/actions-comment-pull-request@v3
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          script: |
-            github.rest.pulls.update({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              pull_number: context.payload.pull_request.number,
-              state: "closed"
-            })
+          message: |
+            Hello world ! :wave:
