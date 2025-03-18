@@ -1,0 +1,28 @@
+name: Auto Close PR
+
+on:
+  pull_request:
+    types:
+      - opened
+
+jobs:
+  close-pr:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Comment on PR
+        uses: peter-evans/create-or-update-comment@v4
+        with:
+          issue-number: ${{ github.event.pull_request.number }}
+          body: "Thanks for your PR! Could you open a new issue at this link instead? [Open an Issue](https://github.com/YOUR_REPO/issues/new)."
+
+      - name: Close PR
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            github.rest.pulls.update({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: context.payload.pull_request.number,
+              state: "closed"
+            })
